@@ -12,32 +12,25 @@ OpenCV 3+
 
 **Mathematically**:
 
-For one example $x^{(i)}$:
-$$
-z^{[1] (i)} =  W^{[1]} x^{(i)} + b^{[1]}\tag{1}
-$$
+For one example ![$x^{(i)}$](https://latex.codecogs.com/png.latex?x^{(i)}):
 
-$$
-a^{[1] (i)} = \tanh(z^{[1] (i)})\tag{2}
-$$
+![z^{[1] (i)} =  W^{[1]} x^{(i)} + b^{[1]}\tag{1}](https://latex.codecogs.com/png.latex?z^{[1]&space;(i)}&space;=&space;W^{[1]}&space;x^{(i)}&space;&plus;&space;b^{[1]})
 
-$$
-z^{[2] (i)} = W^{[2]} a^{[1] (i)} + b^{[2]}\tag{3}
-$$
+![a^{[1] (i)} = \tanh(z^{[1] (i)})\tag{2}](https://latex.codecogs.com/png.latex?a%5E%7B%5B1%5D%20%28i%29%7D%20%3D%20%5Ctanh%28z%5E%7B%5B1%5D%20%28i%29%7D%29)
 
-$$
-\hat{y}^{(i)} = a^{[2] (i)} = \sigma(z^{ [2] (i)})\tag{4}
-$$
+![z^{[2] (i)} = W^{[2]} a^{[1] (i)} + b^{[2]}\tag{3}](https://latex.codecogs.com/png.latex?z%5E%7B%5B2%5D%20%28i%29%7D%20%3D%20W%5E%7B%5B2%5D%7D%20a%5E%7B%5B1%5D%20%28i%29%7D%20&plus;%20b%5E%7B%5B2%5D%7D)
 
-$$
-y^{(i)}_{prediction} = \begin{cases} 1 & \mbox{if } a^{[2](i)} > 0.5 \\ 0 & \mbox{otherwise } \end{cases}\tag{5}
-$$
+
+![\hat{y}^{(i)} = a^{[2] (i)} = \sigma(z^{ [2] (i)})\tag{4}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D%5E%7B%28i%29%7D%20%3D%20a%5E%7B%5B2%5D%20%28i%29%7D%20%3D%20%5Csigma%28z%5E%7B%20%5B2%5D%20%28i%29%7D%29)
+
+
+![y^{(i)}_{prediction} = \begin{cases} 1 & \mbox{if } a^{[2](i)} > 0.5 \\ 0 & \mbox{otherwise } \end{cases}\tag{5}](https://latex.codecogs.com/png.latex?y%5E%7B%28i%29%7D_%7Bprediction%7D%20%3D%20%5Cbegin%7Bcases%7D%201%20%26%20%5Cmbox%7Bif%20%7D%20a%5E%7B%5B2%5D%28i%29%7D%20%3E%200.5%20%5C%5C%200%20%26%20%5Cmbox%7Botherwise%20%7D%20%5Cend%7Bcases%7D)
+
 
 
 Given the predictions on all the examples, you can also compute the cost J as follows: 
-$$
-J = - \frac{1}{m} \sum\limits_{i = 0}^{m} \large\left(\small y^{(i)}\log\left(a^{[2] (i)}\right) + (1-y^{(i)})\log\left(1- a^{[2] (i)}\right)  \large  \right) \small \tag{6}
-$$
+
+![J = - \frac{1}{m} \sum\limits_{i = 0}^{m} \large\left(\small y^{(i)}\log\left(a^{[2] (i)}\right) + (1-y^{(i)})\log\left(1- a^{[2] (i)}\right)  \large  \right) \small \tag{6}](https://latex.codecogs.com/png.latex?J%20%3D%20-%20%5Cfrac%7B1%7D%7Bm%7D%20%5Csum%5Climits_%7Bi%20%3D%200%7D%5E%7Bm%7D%20%5Clarge%5Cleft%28%5Csmall%20y%5E%7B%28i%29%7D%5Clog%5Cleft%28a%5E%7B%5B2%5D%20%28i%29%7D%5Cright%29%20&plus;%20%281-y%5E%7B%28i%29%7D%29%5Clog%5Cleft%281-%20a%5E%7B%5B2%5D%20%28i%29%7D%5Cright%29%20%5Clarge%20%5Cright%29%20%5Csmall)
 
 We will do the following things in the code
 	1. Initialize the weights and biases
@@ -51,6 +44,7 @@ We will do the following things in the code
 Activation function: An activation function activates a neuron, i.e., it determines whether a neuron should output some values to the next layer. 
 
 ![Different activation functions ](./images/ActivationFunctions.png)
+
 obtained from [medium](https://medium.com/@shrutijadon10104776/survey-on-activation-functions-for-deep-learning-9689331ba092)
 
 We implement tanh and sigmoid activation functions as follows
@@ -110,7 +104,7 @@ NOTE: we are visualizing the output of various size of the hidden layer. The dat
 ![Noisy Moons](./images/NoisyMoons.png)
 
 **Blobs:**
-![Blobs](./images/Blobs.png)
+![Blobs](./images/blobs.png)
 
 **Planar Data:**
 ![Planar Data](./images/planardata.png)
