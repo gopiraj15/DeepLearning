@@ -32,13 +32,15 @@ Given the predictions on all the examples, you can also compute the cost J as fo
 
 ![J = - \frac{1}{m} \sum\limits_{i = 0}^{m} \large\left(\small y^{(i)}\log\left(a^{[2] (i)}\right) + (1-y^{(i)})\log\left(1- a^{[2] (i)}\right)  \large  \right) \small \tag{6}](https://latex.codecogs.com/png.latex?J%20%3D%20-%20%5Cfrac%7B1%7D%7Bm%7D%20%5Csum%5Climits_%7Bi%20%3D%200%7D%5E%7Bm%7D%20%5Clarge%5Cleft%28%5Csmall%20y%5E%7B%28i%29%7D%5Clog%5Cleft%28a%5E%7B%5B2%5D%20%28i%29%7D%5Cright%29%20&plus;%20%281-y%5E%7B%28i%29%7D%29%5Clog%5Cleft%281-%20a%5E%7B%5B2%5D%20%28i%29%7D%5Cright%29%20%5Clarge%20%5Cright%29%20%5Csmall)
 
-We will do the following things in the code
+We will do the following things in the code:
+
 	1. Initialize the weights and biases
-	2. Implement forward propagation
-	3. Compute the cost
-	4. Compute the gradients using backpropagation
-	5. Update the weights using gradient descent
-	6. Predict and calculate accuracy
+	3. Implement forward propagation
+	4. Compute the cost
+	5. Compute the gradients using backpropagation
+	6. Update the weights using gradient descent
+	7. Predict and calculate accuracy
+
 
 ### **Math functions:**
 Activation function: An activation function activates a neuron, i.e., it determines whether a neuron should output some values to the next layer. 
@@ -83,7 +85,7 @@ referred from Andrew Ng lecture
 Gradient descent is an optimization algorithm used to find the values of coefficients of a function (f) that minimizes a cost function. The idea is to take repeated steps in the opposite direction of the gradient (or approximate gradient) of the function at the current point, because this is the direction of steepest descent
 
 **General gradient descent rule**:
-$ \theta = \theta - \alpha \frac{\partial J }{ \partial \theta }$ where $\alpha$ is the learning rate and $\theta$ represents a parameter.
+![\theta = \theta - \alpha \frac{\partial J }{ \partial \theta }](https://latex.codecogs.com/png.latex?%5Ctheta%20%3D%20%5Ctheta%20-%20%5Calpha%20%5Cfrac%7B%5Cpartial%20J%20%7D%7B%20%5Cpartial%20%5Ctheta%20%7D) where ![\alpha](https://latex.codecogs.com/png.latex?%5Calpha) is the learning rate and ![\theta](https://latex.codecogs.com/png.latex?%5Ctheta) represents a parameter.
 
 **Illustration**: The gradient descent algorithm with a good learning rate (converging) and a bad learning rate (diverging). Images courtesy of Adam Harley.
 
@@ -97,14 +99,18 @@ NOTE: we are visualizing the output of various size of the hidden layer. The dat
 **Gaussian Quantiles:**
 ![Gaussian Quantiles](./images/GaussianQuantiles.png)
 
+
 **Noisy Circles:**
 ![Noisy Circles](./images/NoisyCircles.png)
+
 
 **Noisy Moons:**
 ![Noisy Moons](./images/NoisyMoons.png)
 
+
 **Blobs:**
 ![Blobs](./images/blobs.png)
+
 
 **Planar Data:**
 ![Planar Data](./images/planardata.png)
