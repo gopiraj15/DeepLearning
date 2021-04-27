@@ -63,6 +63,51 @@ void DeepNeuralNetwork::linear_activation_forward(cv::Mat A_prev, cv::Mat W, cv:
 	}
 }
 
+//This function implements a L-model neural network
+void DeepNeuralNetwork::L_model_forward(cv::Mat X, std::vector<cv::Mat>& weights, std::vector<cv::Mat>& biases, cv::Mat& AL)
+{
+
+	Mat A = X;
+	int L = weights.size();
+
+	// Implement [LINEAR -> RELU]*(L-1).
+	for (int l = 0; l < L - 1; ++l)
+	{
+		Mat A_prev = A.clone();
+		linear_activation_forward(A_prev, weights[l], biases[l], A, "relu");
+	}
+
+
+	// Implement LINEAR -> SIGMOID.
+	linear_activation_forward(A, weights[L-1], biases[L-1], AL, "sigmoid");
+
+}
+
+double DeepNeuralNetwork::compute_cost(cv::Mat AL, cv::Mat Y)
+{
+
+	double m_ = Y.cols;
+
+	// cost = -np.sum(Y*np.log(AL) + (1-Y)*np.log(1-AL))/m 
+	cv::Mat p_A2, p_m_A2;
+	cv::log(AL, p_A2); cv::log(1 - AL, p_m_A2);
+
+	cv::Mat logprobs = p_A2.mul(Y) + p_m_A2.mul(1 - Y);
+	return cv::sum(logprobs)[0] / (-m_);
+}
+
+
+//! performs linear backpropagation
+void DeepNeuralNetwork::linear_backward(cv::Mat dZ, cv::Mat A_prev, cv::Mat W, cv::Mat b,
+	cv::Mat& dA_prev, cv::Mat& dW, cv::Mat& db)
+{
+	double m_ = A_prev.cols;
+
+	dW = (dZ * A_prev.t()) / m_;
+	db = col_sum(dZ, m_);
+	dA_prev = W.t() * dZ;
+}
+
 //This function computes tanh on the input
 cv::Mat tanh(cv::Mat ip)
 {
