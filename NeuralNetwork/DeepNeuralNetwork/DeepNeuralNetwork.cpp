@@ -108,6 +108,26 @@ void DeepNeuralNetwork::linear_backward(cv::Mat dZ, cv::Mat A_prev, cv::Mat W, c
 	dA_prev = W.t() * dZ;
 }
 
+
+//!< linear backward activation
+void DeepNeuralNetwork::linear_activation_backward(cv::Mat dA, cv::Mat Z, cv::Mat A_prev, 
+	cv::Mat W, cv::Mat b, cv::Mat &dA_prev, cv::Mat& dW, cv::Mat &db, const std::string activation)
+{
+
+	cv::Mat dZ;
+
+	if (activation == "sigmoid")
+	{
+		dZ = sigmoid_backward(dA, Z);
+	}
+	else if (activation == "relu")
+	{
+		dZ = relu_backward(dA, Z);
+	}
+
+	linear_backward(dZ, A_prev, W, b, dA_prev, dW, db);
+}
+
 //This function computes tanh on the input
 cv::Mat tanh(cv::Mat ip)
 {
@@ -130,6 +150,28 @@ cv::Mat sigmoid(cv::Mat ip)
 cv::Mat relu(cv::Mat ip)
 {
 	return cv::Mat(cv::max(ip, 0.0));
+}
+
+//computes sigmoid on the input
+cv::Mat sigmoid_backward(cv::Mat dA, cv::Mat Z)
+{
+	Mat n_exp;
+	cv::exp(-Z, n_exp);
+
+	cv::Mat s = cv::Mat(1 / (1 + n_exp));
+
+	cv::Mat dZ = (dA.mul(s)).mul(1 - s);
+
+	return dZ;
+}
+
+
+//computes relu on the input
+cv::Mat relu_backward(cv::Mat dA, cv::Mat Z)
+{
+	cv::Mat dZ;
+	dA.copyTo(dZ, Z > 0);
+	return dZ;
 }
 
 

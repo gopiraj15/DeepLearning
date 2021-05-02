@@ -15,6 +15,14 @@ cv::Mat sigmoid(cv::Mat ip);
 //computes relu on the input Mat
 cv::Mat relu(cv::Mat ip);
 
+
+//computes sigmoid on the input Mat
+cv::Mat sigmoid_backward(cv::Mat dA, cv::Mat Z);
+
+//computes relu on the input Mat
+cv::Mat relu_backward(cv::Mat dA, cv::Mat Z);
+
+
 //computes the sum of the columns and scales the output with m
 cv::Mat col_sum(cv::Mat ip, double m);
 
@@ -49,6 +57,10 @@ public:
 
 	//!< linear backpropagation
 	void linear_backward(cv::Mat dZ, cv::Mat A_prev, cv::Mat W, cv::Mat b, cv::Mat& dA_prev, cv::Mat& dW, cv::Mat& db);
+	
+	//!< linear backward activation
+	void linear_activation_backward(cv::Mat dA, cv::Mat dZ, cv::Mat A_prev, cv::Mat W, 
+		cv::Mat b, cv::Mat& dA_prev, cv::Mat& dW, cv::Mat& db, const std::string activation = "sigmoid");
 
 
 private:
