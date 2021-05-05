@@ -128,6 +128,17 @@ void DeepNeuralNetwork::linear_activation_backward(cv::Mat dA, cv::Mat Z, cv::Ma
 	linear_backward(dZ, A_prev, W, b, dA_prev, dW, db);
 }
 
+
+void DeepNeuralNetwork::L_model_backward(cv::Mat AL, cv::Mat Y)
+{
+	int L = dA.size();
+
+	cv::Mat dAL = -((Y  / AL) - (1 - Y) / (1 - AL));
+
+	//linear_activation_backward(dAL, )
+
+}
+
 //This function computes tanh on the input
 cv::Mat tanh(cv::Mat ip)
 {

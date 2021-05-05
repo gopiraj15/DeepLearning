@@ -37,6 +37,11 @@ public:
 	double m; //!< number of training samples
 	cv::Mat predictions; //!< predicted outputs
 
+
+	std::vector<cv::Mat> dA; //!< cache for gradients for A
+	std::vector<cv::Mat> dW; //!< cache for gradients on weights
+	std::vector<cv::Mat> db; //!< cache for gradients on biases
+
 	
 	//!< This function initializes the parameters for the deep neural network
 	void initialize_deep_parameters(cv::Mat X, const std::vector<int>& layer_dims);
@@ -49,7 +54,7 @@ public:
 	void linear_activation_forward(cv::Mat A_prev, cv::Mat W, cv::Mat b, cv::Mat& A, const std::string& activation = "sigmoid");
 
 
-	//!< implementing a L-layer neural network
+	//!< implementing a L-layer neural network - forward propagation
 	void L_model_forward(cv::Mat X, std::vector<cv::Mat>& weights, std::vector<cv::Mat>& biases, cv::Mat& AL);
 
 	//! computing the cost
@@ -63,11 +68,16 @@ public:
 		cv::Mat b, cv::Mat& dA_prev, cv::Mat& dW, cv::Mat& db, const std::string activation = "sigmoid");
 
 
+	//!< implementation of a L-layer neural network - back propagaton
+	void L_model_backward(cv::Mat AL, cv::Mat Y);
+
+
 private:
 	std::vector<cv::Mat> Z;
 	std::vector<cv::Mat> A;
 	std::vector<cv::Mat> weight_grads;
 	std::vector<cv::Mat> bias_grads;
+
 
 };
 
