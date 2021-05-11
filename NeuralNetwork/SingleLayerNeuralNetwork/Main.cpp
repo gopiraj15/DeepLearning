@@ -9,7 +9,7 @@ int main()
 	vector<double> X_ip, Y_ip;
 
 	//Loading the input data
-	load_dataset("data/x_gaussian_quantiles.txt", "data/y_gaussian_quantiles.txt", X_ip, Y_ip);
+	load_dataset("data/x_noisymoons.txt", "data/y_noisymoons.txt", X_ip, Y_ip);
 
 	cv::Mat X(2, 400, CV_64F, X_ip.data());
 	cv::Mat Y(1, 400, CV_64F, Y_ip.data());
